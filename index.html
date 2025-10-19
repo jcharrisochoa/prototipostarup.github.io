@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gozo App - Bienestar Integral</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="login-screen" class="screen active">
+        <div class="logo-container">
+            <img src="img/image1.png" alt="Logo Gozo" class="logo-image">
+        </div>
+        <form id="login-form" class="auth-form">
+            <h2>Sign In</h2>
+            <p class="login-info">Algun texto de ayuda</p>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Correo (demo@gozo.com)" required value="demo@gozo.com">
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Contraseña (demo)" required value="demo">
+            </div>
+            <button type="submit" class="btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Ingresar
+            </button>
+            <p id="login-error" class="error-message" style="display: none;">Credenciales incorrectas.</p>
+            
+            <div class="login-links">
+                <a href="#" class="link-text">¿Olvidaste tu contraseña?</a>
+            </div>
+            
+            <div class="social-divider">
+                <span>O continúa con</span>
+            </div>
+            
+            <div class="social-buttons">
+                <button type="button" class="btn-social btn-google">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button type="button" class="btn-social btn-meta">
+                    <i class="fab fa-meta"></i> Meta
+                </button>
+            </div>
+            
+            <div class="signup-link">
+                <p>¿No tienes cuenta? <a href="#" class="link-text-primary">Regístrate aquí</a></p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#" class="link-text-small">Política de Tratamiento de Datos</a>
+                <p class="copyright">© 2025 Johan Charris. Todos los derechos reservados.</p>
+            </div>
+        </form>
+    </div>
+
+    <div id="main-app" class="app-container" style="display: none;">
+
+        <header class="top-header">
+            <h1 id="screen-title">Dashboard</h1>
+            <button id="logout-btn" class="btn-icon"><i class="fas fa-sign-out-alt"></i></button>
+        </header>
+
+        <div class="content-wrapper">
+            
+            <section id="dashboard-screen" class="app-screen active">
+                <!-- Saludo del Usuario -->
+                <div class="welcome-section">
+                    <div class="welcome-header">
+                        <div class="welcome-text">
+                            <h2 class="greeting-text" id="greeting-text">Cargando...</h2>
+                            <p class="user-name" id="user-name-display">Usuario</p>
+                        </div>
+                        <div class="welcome-icon">
+                            <i class="fas fa-hand-sparkles"></i>
+                        </div>
+                    </div>
+                    <div class="today-reminder">
+                        <i class="fas fa-calendar-check"></i>
+                        <div class="reminder-content">
+                            <strong>Recordatorio de Hoy:</strong>
+                            <p id="today-reminder-text">Cargando actividades...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Tu Jornada de Bienestar Hoy</h2>
+                <div class="status-card">
+                    <i class="fas fa-bell"></i>
+                    <h3>Notificaciones / Recomendaciones (IA)</h3>
+                    <p id="recommendation-text">Cargando recomendación...</p>
+                </div>
+
+                <div class="grid-options">
+                    <button class="nav-button" data-target="food-screen"><i class="fas fa-utensils"></i> Alimentación</button>
+                    <button class="nav-button" data-target="exercise-screen"><i class="fas fa-dumbbell"></i> Ejercicios</button>
+                    <button class="nav-button" data-target="tamizaje-screen"><i class="fas fa-heartbeat"></i> Tamizaje (Datos)</button>
+                    <button class="nav-button" data-target="social-screen"><i class="fas fa-users"></i> Comunidad / Red</button>
+                    <button class="nav-button" data-target="payments-screen"><i class="fas fa-credit-card"></i> Pagos</button>
+                    <button class="nav-button" data-target="tracking-screen"><i class="fas fa-shipping-fast"></i> Delivery</button>
+                </div>
+            </section>
+
+            <section id="food-screen" class="app-screen">
+                <h2 class="section-title">Alimentación y Restaurantes Aliados 🥗</h2>
+                <p>Ecosistema curado para una **Indulgencia sin Culpa**.</p>
+                <div class="module-card">
+                    <h4>Mi Plan Hoy (Sugerencia IA)</h4>
+                    <p id="food-plan-text">Cargando plan...</p>
+                </div>
+                <div id="restaurants-list">
+                    </div>
+                <button class="btn-secondary full-width">Ver la Red Completa de Aliados</button>
+            </section>
+
+            <section id="exercise-screen" class="app-screen">
+                <h2 class="section-title">Rutinas y Gimnasio Conectado 🏋️‍♀️</h2>
+                <p>Tu rutina adaptada a tus metas de **Progreso Empoderador**.</p>
+                
+                <!-- Carrusel de Gimnasios -->
+                <div class="carousel-section">
+                    <h4 class="carousel-title">
+                        <i class="fas fa-dumbbell"></i> Gimnasios Aliados
+                    </h4>
+                    <div class="carousel-container">
+                        <button class="carousel-btn prev" id="gym-carousel-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="carousel-wrapper">
+                            <div class="carousel-track" id="gym-carousel-track">
+                                <!-- Las tarjetas se cargarán dinámicamente -->
+                            </div>
+                        </div>
+                        <button class="carousel-btn next" id="gym-carousel-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4>Membresía Activa (Integración Fluida)</h4>
+                    <p id="gym-membership-text">Cargando membresía...</p>
+                </div>
+                <div id="routines-list">
+                    </div>
+                <button class="btn-secondary full-width">Ver mi Calendario de Ejercicios</button>
+            </section>
+
+            <section id="tamizaje-screen" class="app-screen">
+                <h2 class="section-title">Mi Perfil y Tamizaje ❤️</h2>
+                
+                <!-- Foto de Perfil -->
+                <div class="profile-section">
+                    <div class="profile-photo">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <button class="btn-secondary btn-small">Cambiar Foto</button>
+                </div>
+
+                <!-- Datos Personales -->
+                <div class="module-card">
+                    <h4><i class="fas fa-user"></i> Datos Personales</h4>
+                    <div class="info-row">
+                        <span class="info-label">Nombre Completo:</span>
+                        <span class="info-value" id="data-nombre">Cargando...</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Correo Electrónico:</span>
+                        <span class="info-value" id="data-correo">Cargando...</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Teléfono:</span>
+                        <span class="info-value" id="data-telefono">Cargando...</span>
+                    </div>
+                </div>
+
+                <!-- Datos Demográficos -->
+                <div class="module-card">
+                    <h4><i class="fas fa-map-marker-alt"></i> Datos Demográficos</h4>
+                    <div class="info-row">
+                        <span class="info-label">Edad:</span>
+                        <span class="info-value" id="data-edad-demo">Cargando...</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Género:</span>
+                        <span class="info-value" id="data-genero">Cargando...</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Ciudad:</span>
+                        <span class="info-value" id="data-ciudad">Cargando...</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Dirección:</span>
+                        <span class="info-value" id="data-direccion">Cargando...</span>
+                    </div>
+                </div>
+
+                <!-- Datos Biométricos -->
+                <div class="module-card">
+                    <h4><i class="fas fa-heartbeat"></i> Datos Biométricos (Sensibles)</h4>
+                    <div class="data-grid">
+                        <div class="data-item">Peso (kg): <span id="data-peso"></span></div>
+                        <div class="data-item">Estatura (cm): <span id="data-estatura"></span></div>
+                        <div class="data-item">Ritmo Cardíaco (ppm): <span id="data-ritmo"></span></div>
+                        <div class="data-item">Edad: <span id="data-edad"></span></div>
+                        <div class="data-item score">Puntaje Gozo: <span id="data-puntaje"></span></div>
+                    </div>
+                    <p class="data-note">⚠️ **Aviso de Dato Sensible:** Consentimiento explícito requerido para el tratamiento de esta información (Ley 1581).</p>
+                    <button class="btn-primary full-width">Sincronizar Dispositivo Biométrico</button>
+                </div>
+
+                <!-- Formas de Pago -->
+                <div class="module-card">
+                    <h4><i class="fas fa-wallet"></i> Métodos de Pago Asociados</h4>
+                    <p class="payment-info">Conecta tus plataformas de pago para transacciones rápidas y seguras</p>
+                    
+                    <div class="payment-buttons">
+                        <button class="btn-payment nequi">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div class="payment-text">
+                                <strong>Nequi</strong>
+                                <span class="payment-status" id="nequi-status">No conectado</span>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <button class="btn-payment daviplata">
+                            <i class="fas fa-credit-card"></i>
+                            <div class="payment-text">
+                                <strong>Daviplata</strong>
+                                <span class="payment-status" id="daviplata-status">No conectado</span>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <button class="btn-payment bancolombia">
+                            <i class="fas fa-university"></i>
+                            <div class="payment-text">
+                                <strong>Bancolombia</strong>
+                                <span class="payment-status" id="bancolombia-status">No conectado</span>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <button class="btn-payment pse">
+                            <i class="fas fa-money-check-alt"></i>
+                            <div class="payment-text">
+                                <strong>PSE</strong>
+                                <span class="payment-status" id="pse-status">No conectado</span>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <button class="btn-payment tarjeta">
+                            <i class="fas fa-credit-card"></i>
+                            <div class="payment-text">
+                                <strong>Tarjeta Crédito/Débito</strong>
+                                <span class="payment-status" id="tarjeta-status">No conectado</span>
+                            </div>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
+                    <button class="btn-secondary full-width">
+                        <i class="fas fa-plus-circle"></i> Agregar Método de Pago
+                    </button>
+                </div>
+            </section>
+
+            <section id="tracking-screen" class="app-screen">
+                <h2 class="section-title">Ruta de tu Domicilio Saludable 🛵</h2>
+                <p>Seguimiento de tu pedido **#<span id="tracking-id"></span>** del <span id="tracking-restaurante"></span>.</p>
+                <div class="module-card tracking">
+                    <h4>Estado del Pedido</h4>
+                    <p>Hora Estimada: <span id="tracking-eta"></span></p>
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marker-alt"></i> Simulación de Mapa - Domiciliario: <span id="tracking-domiciliario"></span>
+                    </div>
+                    <p>¡El domiciliario está a **<span id="tracking-distancia"></span>** de tu ubicación!</p>
+                </div>
+                <button class="btn-secondary full-width">Contactar Domiciliario</button>
+            </section>
+            
+            <section id="payments-screen" class="app-screen">
+                <h2 class="section-title">Historial y Métodos de Pago 💳</h2>
+                <p>Gestión de tu Suscripción Premium y compras del Marketplace.</p>
+                <div class="module-card">
+                    <h4>Suscripción</h4>
+                    <p>Plan Premium Activo. Próximo cobro: 25/Nov/2025.</p>
+                </div>
+                <div class="list-item transaction">
+                    <i class="fas fa-receipt"></i> Pago Marketplace: Healthy Bowls ($25,000 COP)
+                </div>
+                <div class="list-item transaction">
+                    <i class="fas fa-credit-card"></i> Suscripción Premium ($49,900 COP)
+                </div>
+                <button class="btn-primary full-width">Administrar Métodos de Pago</button>
+            </section>
+
+            <section id="social-screen" class="app-screen">
+                <h2 class="section-title">Comunidad Gozo y Red de Apoyo 🫂</h2>
+                <p>Comparte logros y motívate con amigos (**Progreso Empoderador**).</p>
+                <div id="social-feed">
+                    </div>
+                <button class="btn-secondary full-width">Ver Perfil y Puntajes Globales</button>
+            </section>
+
+        </div>
+
+        <nav class="bottom-nav">
+            <button class="nav-icon active" data-target="dashboard-screen"><i class="fas fa-home"></i></button>
+            <button class="nav-icon" data-target="food-screen"><i class="fas fa-utensils"></i></button>
+            <button class="nav-icon" data-target="tamizaje-screen"><i class="fas fa-chart-line"></i></button>
+            <button class="nav-icon" data-target="social-screen"><i class="fas fa-users"></i></button>
+            <button class="nav-icon" data-target="tracking-screen"><i class="fas fa-map-marked-alt"></i></button>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
